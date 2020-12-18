@@ -17,5 +17,3 @@ class TrackBloc {
     _albumFetcher.close();
   }
 }
-
-final trackBloc = TrackBloc();

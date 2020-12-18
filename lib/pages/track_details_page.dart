@@ -3,6 +3,7 @@ import 'package:bloc_music_flutter/model/album.dart';
 import 'package:bloc_music_flutter/model/lyrics.dart';
 import 'package:bloc_music_flutter/widget/info_text.dart';
 import 'package:bloc_music_flutter/widget/label_text.dart';
+import 'package:bloc_music_flutter/widget/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc_music_flutter/helper/capitalize_extension.dart';
 
@@ -15,6 +16,8 @@ class TrackDetailsPage extends StatefulWidget {
 }
 
 class _TrackDetailsPageState extends State<TrackDetailsPage> {
+  final lyricBloc = LyricBloc();
+
   @override
   Widget build(BuildContext context) {
     lyricBloc.fetchLyric(widget.track.trackID.toString());
@@ -47,7 +50,7 @@ class _TrackDetailsPageState extends State<TrackDetailsPage> {
                 } else if (snapshot.hasError) {
                   return Text(snapshot.error.toString());
                 }
-                return Center(child: CircularProgressIndicator());
+                return Loading();
               },
               stream: lyricBloc.lyric,
             )

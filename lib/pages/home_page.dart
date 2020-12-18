@@ -2,6 +2,7 @@ import 'package:bloc_music_flutter/model/album.dart';
 import 'package:bloc_music_flutter/bloc/album_bloc.dart';
 import 'package:bloc_music_flutter/pages/track_details_page.dart';
 import 'package:bloc_music_flutter/widget/list_row.dart';
+import 'package:bloc_music_flutter/widget/loading.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,6 +11,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final trackBloc = TrackBloc();
+
   @override
   void dispose() {
     trackBloc.dispose();
@@ -30,7 +33,7 @@ class _HomePageState extends State<HomePage> {
           } else if (snapshot.hasError) {
             return Text(snapshot.error.toString());
           }
-          return Center(child: CircularProgressIndicator());
+          return Loading();
         },
         stream: trackBloc.albums,
       ),

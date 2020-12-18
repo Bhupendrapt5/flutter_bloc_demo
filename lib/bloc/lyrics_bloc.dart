@@ -17,5 +17,3 @@ class LyricBloc {
     _lyricsFetcher.close();
   }
 }
-
-final lyricBloc = LyricBloc();
